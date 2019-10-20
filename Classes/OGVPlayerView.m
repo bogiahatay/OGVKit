@@ -15,8 +15,9 @@
 //  - requires extra pixel format conversions
 //  - image isn't retained when app goes into background
 //  - 4:4:4 doesn't output at all on device
+//  - weird offset bug at 640x360 on iPad Pro
 //
-#define USE_LAYER 1
+//#define USE_LAYER 1
 
 static NSString *kOGVPlayerTimeLabelEmpty = @"-:--";
 
@@ -128,7 +129,7 @@ static BOOL OGVPlayerViewDidRegisterIconFont = NO;
                                                     name:UIApplicationDidEnterBackgroundNotification
                                                   object:nil];
     if (state) {
-        [state cancel];
+//        [state cancel];
     }
 }
 
@@ -138,6 +139,14 @@ static BOOL OGVPlayerViewDidRegisterIconFont = NO;
         return state.paused;
     } else {
         return NO;
+    }
+}
+
+
+-(void)pause2
+{
+    if (state) {
+        [state pause];
     }
 }
 
@@ -162,6 +171,11 @@ static BOOL OGVPlayerViewDidRegisterIconFont = NO;
     } else {
         return 0;
     }
+}
+
+- (OGVPlayerState *)state
+{
+    return state;
 }
 
 -(void)layoutSubviews
@@ -373,7 +387,7 @@ static BOOL OGVPlayerViewDidRegisterIconFont = NO;
 
 -(void)appDidEnterBackground:(id)obj
 {
-    [self pause];
+//    [self pause];
 }
 
 -(void)stopTimeTimer

@@ -58,9 +58,11 @@
 
 @property (readonly) BOOL paused;
 @property (readonly) float playbackPosition;
+@property (readonly) OGVPlayerState *state;
 
 -(void)play;
 -(void)pause;
+-(void)pause2;
 -(void)seek:(float)seconds;
 
 @end

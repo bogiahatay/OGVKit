@@ -56,9 +56,11 @@
 -(void)cancel;
 -(void)seek:(float)time;
 
+//@property (readonly) BOOL paused;
 @property (readonly) BOOL paused;
 @property (readonly) float playbackPosition;
 @property (readonly) float duration;
 @property (readonly) BOOL seekable;
-
+@property (readonly) OGVDecoder *decoder;
+ 
 @end
